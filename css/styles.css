@@ -78,6 +78,32 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    nav {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        a:is(:link, visted) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            width: 40px;
+            svg {
+                opacity: 0.7;
+                transition: all 0.4s ease-in;
+                width: 28px;
+            }
+
+            a:is(:hover) svg {
+                opacity: 1;
+            }
+
+            a:is(:hover) {
+                transform: scale(1.05s);
+            }
+
+        }
+    }
     main {
             header {
                 display: flex;
@@ -172,6 +198,9 @@ body.emmet {
     header {
         h2 {
             border-bottom: none;
+            max-width: 75%;
+            background-color: rgba(0, 0, 0, 0.514);
+            border-radius: 6px;
         }
     }
 
