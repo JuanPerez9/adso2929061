@@ -79,32 +79,34 @@ body {
     align-items: center;
     flex-wrap: wrap;
     min-height: 100vh;
+
     nav {
         position: fixed;
         top: 20px;
         left: 20px;
-        a:is(:link, visted) {
+        a:is(:link, :visited) {
+            border-radius: 4px;
+            background-color: var(--color-1);
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: all 0.4s ease-in;
             height: 40px;
             width: 40px;
             svg {
                 opacity: 0.7;
                 transition: all 0.4s ease-in;
-                width: 28px;
+                width: 24px;
             }
-
-            a:is(:hover) svg {
-                opacity: 1;
-            }
-
-            a:is(:hover) {
-                transform: scale(1.05s);
-            }
-
+        }
+        a:is(:hover) svg {
+            opacity: 1;
+        }
+        a:is(:hover) {
+            transform: scale(1.05);
         }
     }
+
     main {
             display: flex;
             flex-direction: column;
@@ -187,11 +189,11 @@ body {
             } 
             
             section {
-                width: 400px;
                 background-color: rgba(48, 48, 45, 0.845);
                 border-radius: 4px;
                 padding: 1rem;
-                width: 440px;
+                width: fit-content;
+                max-width: 730px;
                 h3 {
                     color: white;
                     font-size: 1.4rem;
