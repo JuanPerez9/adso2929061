@@ -298,9 +298,10 @@ body.html {
             border-bottom: none;
             max-width: 90%;
             width: fit-content;
+            text-align: center;
             background-color: rgba(0, 0, 0, 0.763);
             border-radius: 6px;
-            width: 650px;
+            width: fit-content;
         }
     }
 
