@@ -26,6 +26,7 @@
         header figure.logo {
             height: 192px;
             width: 192px;
+            margin: 0px auto;
             background: url(images/spriteweb.png) no-repeat;
             background-position: -10px -398px;
         }
@@ -33,6 +34,8 @@
         header menu {
             display: flex;
             gap: 1rem;
+            width: 908px;
+            margin: 0px auto;
         }
 
         header menu a:is(:link, :visited) {
@@ -59,7 +62,7 @@
         main section.galeria {
             background-color: #0006;
             margin: 40px auto;
-            width: 908px;
+            width: 945px;
         }
         
         main section.galeria div {
@@ -106,19 +109,100 @@
             width: 908px;
         }
 
+        main section.contenedor article {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            transition: all 0.2s ease-in
+        }
+
+        main section.contenedor article:hover {
+            cursor: pointer;
+            color: #17a053;
+        }
+
+        main section.contenedor article:last-child {
+            margin-bottom: 0;
+        }
+
+        main section.contenedor article div {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        main section.contenedor article div.img1,
+        main section.contenedor article div.img2 {
+            height: 148px;
+            width: 200px;
+        }
+
         main section.contenedor article div.img1 {
             margin-top: 24px;
             background: url(images/spriteweb.png) no-repeat;
-            background-position: 0 0;
-            width: 200px;
-            height: 200px;
+            background-position: -240px -490px;
         }
 
         main section article div.text {
             background-color: #fff;
+            font-family: Verdana;
+            text-align: justify;
+            line-height: 1.5rem;
+            width: 408px;
         }
 
+        main section.contenedor article div.img2 {
+            background: url(images/spriteweb.png) no-repeat;
+            background-position: 0px -216px;
+        }
+
+
         /* contenedor */
+
+        /* footer */
+
+        footer {
+            background-color: #fff;
+            margin: 40px auto;
+            padding: 20px;
+            width: 908px;
+        }
+
+        footer div.imgfooter {
+            background: url(images/spriteweb.png) no-repeat;
+            background-position: -510px -420px;
+            height: 200px;
+            margin: 20px auto;
+            width: 240px;
+            transition: all 0.2s ease-in;
+        }
+
+        footer div.menufooter a {
+            border-bottom: 4px solid #fff;
+            color: #333;
+            font-family: Verdana;
+            display: inline-block;
+            margin: 4px 23px 0px 0px;
+            padding: 16px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            text-align: center;
+            transition: 0.18s all ease-in;
+            width: 110px;
+        }
+
+        footer div.menufooter a:hover {
+            border-bottom: 4px solid #17a053;
+            cursor: pointer;
+        }
+
+        footer div.menufooter a:last-child {
+            margin-right: 0px;
+        }
+        
+        
+
+
+        /* footer */
 
 
     </style>
@@ -157,11 +241,33 @@
                 </div>
                 <div class="img2"></div>
             </article>
+            <article>
+                <div class="img1"></div>
+                <div class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa sequi voluptatum voluptate corporis in, rem odio, tempora sapiente vitae nihil, aut modi dignissimos. Aspernatur autem veniam laboriosam perferendis perspiciatis eos!
+                </div>
+                <div class="img2"></div>
+            </article>
+            <article>
+                <div class="img1"></div>
+                <div class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa sequi voluptatum voluptate corporis in, rem odio, tempora sapiente vitae nihil, aut modi dignissimos. Aspernatur autem veniam laboriosam perferendis perspiciatis eos!
+                </div>
+                <div class="img2"></div>
+            </article>
         </section>
 
         <footer>
-
+            <div class="imgfooter"></div>
+            <div class="menufooter">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Portfolio</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+            </div>
         </footer>
+
     </main>
 </body>
 
