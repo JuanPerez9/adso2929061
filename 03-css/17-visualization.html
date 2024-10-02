@@ -6,15 +6,9 @@
     <title>17- Visualization</title>
     <link rel="stylesheet" href="../css/styles.css">
     <style>
-
-            ul li {
+        ul li {
             color: #fff9;
         }
-    
-        body section {
-            width: fit-content;
-        }
-
         div.parent {
             background-color: #fff6;
             border: 2px solid #0009;
@@ -25,43 +19,38 @@
             margin: 20px auto;
             width: 180px;
         }
-
         div.child {
             background-color: #fff;
             border: 2px solid #0009;
+            color: #333;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 41px;
             width: 41px;
         }
-
         div.child.none {
             display: none;
         }
-
         div.child.hidden {
             visibility: hidden;
         }
-
         div.parent-box {
             background-color: #fff6;
             display: flex;
             margin: 3rem auto;
             gap: 10px;
         }
-
         div.box {
             border: 2px solid #0009;
             height: 180px;
             padding: 4px;
         }
-
         main section div.box p {
-            font-size: 0.9rem;
+            color: #fff;
+            font-size: 0.6rem;
             text-align: justify;
         }
-
         section div.box h4 {
             background-color: #0009;
             color: #fffc;
@@ -70,15 +59,12 @@
             padding: 4px;
             margin: 0;
         }
-
         div.box2 {
             overflow: hidden;
         }
-
         div.box3 {
             overflow: scroll;
         }
-
         div.element {
             border: 2px solid #0009;
             width: 200px;
@@ -89,27 +75,23 @@
             position: relative;
             height: 80px;
         }
-
         div.parent-element {
             display: flex;
             margin: 20px auto;
             gap: 10px;
             padding-bottom: 4rem;
         }
-
         div.element1 {
             background-color: #e3e3b6;
             left: 60px;
             z-index: 1;
         }
-
         div.element2 {
             background-color: #b8b8f1;
             left: 0px;
             top: 30px;
             z-index: 2;
         }
-        
         div.element3 {
             background-color: #edc8c8;
             left: -60px;
@@ -126,8 +108,13 @@
     </nav>
     <main>
         <header>
-            <h1>00- Template</h1>
-            <h2>Description</h2>
+            <h1>17- Visualization </h1>
+            <ul>
+                <li>Display: block|inline|none|flex|grid</li>
+                <li>Visibility: visible|hidden</li>
+                <li>Overflow: visible|hidden|scroll|auto</li>
+                <li>Z-Index: 1...n</li>
+            </ul>
         </header>
         <section>
             <h3>Child 5 = display: none</h3>
