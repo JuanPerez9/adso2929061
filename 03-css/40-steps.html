@@ -1,88 +1,121 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>40- Steps</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style> 
     
-    * {
-  transition: all 0.2s ease-in;
-}
-body {
-  background-color: #999;
-  font-family: sans-serif;
-}
+    :root {
+      --size-step: calc(1024px/4);
+    }
 
-main {
-  background-color: #ccc;
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 850px;
-  margin: 2rem auto;
-  padding: 1rem;
-}
+    section div.bg {
+      background: url(images/bg-steps.png) no-repeat center /cover;
+      border-radius: 4px;
+      height: 580px;
+      margin: 0.2rem auto;
+      width: 400px;
+      position: relative;
+    }
 
-main div {
-  background: #0009;
-  height: 200px;
-  width: 200px;
-}
+    section div.bg div.steps {
+      background: url(images/steps-all.png)  no-repeat;
+      height: var(--size-step);
+      width: var(--size-step);
+      bottom: 1rem;
+      left: 50%;
+      transform: translate(-50%);
+      position: absolute;
+      animation: animSteps 0.8s steps(4) infinite;
+    }
 
-main div img {
-  object-fit: cover;
-  width: 200px;
-  height: 200px;
-}
+    section div.bg div.steps.front {
+      background-position-y: calc(var(--size-step) *0);
+    }
 
-article {
-  background-color: #ccc;
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-  width: 850px;
-  margin: 2rem auto;
-  padding: 1rem;
-}
+    section div.bg div.steps.left {
+      background-position-y: calc(var(--size-step) *-1);
+    }
 
-@media (max-width: 860px) {
-  main {
-    width: 500px;
-  }
-  article {
-    width: 500px;
-  }
-}
+    section div.bg div.steps.rigth {
+      background-position-y: calc(var(--size-step) *-2);
+    }
 
-@media (max-width: 480px) {
-  main {
-    width: 400px;
-  }
-  article {
-    flex-direction: column;
-    width: 400px;
-  }
-}
-</style>
-<main>
-    <div><img src="https://imgix.bustle.com/uploads/image/2024/6/18/8d164536/echoes-of-wisdom.jpg?w=400&h=300&fit=crop&crop=focalpoint&q=50&dpr=2&fp-x=0.5316&fp-y=0.7273" alt=""></div>
-    <div>
-      <img src="https://imgix.bustle.com/uploads/image/2024/6/18/8d164536/echoes-of-wisdom.jpg?w=400&h=300&fit=crop&crop=focalpoint&q=50&dpr=2&fp-x=0.5316&fp-y=0.7273" alt="">
-    </div>
-    <div>
-      <img src="https://imgix.bustle.com/uploads/image/2024/6/18/8d164536/echoes-of-wisdom.jpg?w=400&h=300&fit=crop&crop=focalpoint&q=50&dpr=2&fp-x=0.5316&fp-y=0.7273" alt="">
-    </div>
-    <div>
-      <img src="https://imgix.bustle.com/uploads/image/2024/6/18/8d164536/echoes-of-wisdom.jpg?w=400&h=300&fit=crop&crop=focalpoint&q=50&dpr=2&fp-x=0.5316&fp-y=0.7273" alt="">
-    </div>
+    section div.bg div.steps.back {
+      background-position-y: calc(var(--size-step) *-3);
+    }
+
+    @keyframes animSteps {
+      100% {
+        background-position-x: -1024px;
+      }
+    }
+
+    section  div.bg div.controls {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 1rem;
+      gap: 0.3rem;
+      align-items: center;
+    }
+
+    section div.bg div.controls button {
+      background-color: #fff9;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1.4rem;
+      height: 50px;
+      width: 50px;
+      transition: all 0.2s ease-in;
+
+      &:hover: {
+        background-color: #fffc;
+        transform: scale(1.05s);
+      }
+
+    }
+
+
+
+  </style>
+</head>
+
+<body class="css">
+  <nav>
+    <a href="index.html">
+      <svg xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+        <path fill="#ffffff"
+          d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+      </svg>
+    </a>
+  </nav>
+  <main>
+    <header>
+      <h1>40- Steps</h1>
+      <h2>Allows step-by-step animation of a sprite.</h2>
+    </header>
+    <section>
+      <div class="bg">
+        <div class="steps front"></div>
+        <div class="controls">
+          <div class="header">
+            <button class="btnBack">⬆️</button>
+            <div class="footer">
+              <button class="btnLeft">⬅️</button>
+              <button class="btnFront">⬇️</button>
+              <button class="btnRight">➡️</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
-  <article>
-    <div class="img">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKRiP38tnkS8LlQFyK2j9OL6dn7ozygRx4Jg&s" alt="">
-    </div>
-    <div class="txt">
-      <h2>Zelda Echoes of Wisdom</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut fugit sint, corporis ad accusamus delectus officiis vel placeat ratione esse, error minus rerum. Culpa asperiores consequuntur est tempora minima aperiam.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut fugit sint, corporis ad accusamus delectus officiis vel placeat ratione esse, error minus rerum. Culpa asperiores consequuntur est tempora minima aperiam.</p>
-    </div>
-  </article>
+</body>
 
-  
+</html>
