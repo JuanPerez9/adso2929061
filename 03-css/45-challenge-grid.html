@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>00- Template</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        
+        body {
+            display: grid;
+            place-items: center;
+            min-height: 100dvh
+        }
+
+        main section.bggrid {
+            width: 650px;
+            height: auto;
+        }
+
+        div.grid1 {
+            display: grid;
+            place-items: center;
+            grid-template-areas:
+                "img01 img02 img03"
+                "img04 img02 img05"
+                "img06 img06 img07";
+            margin: 2rem auto;
+            width: calc(180px * 3);
+            gap: 8px;
+        }
+
+        div.grid1 img {
+            border-radius: 4px;
+            outline: solid #000;
+            object-fit: cover;
+            height: 180px;
+            width: 180px;
+        }
+
+        div img.img01 {
+            grid-area: img01;
+        }
+
+        div img.img02 {
+            grid-area: img02;
+            height: calc(180px * 2 + 8px);
+        }
+
+        div img.img03 {
+            grid-area: img03;
+        }
+
+        div img.img04 {
+            grid-area: img04;
+        }
+
+        div img.img05 {
+            grid-area: img05;
+        }
+
+        div img.img06 {
+            grid-area: img06;
+            width: calc(180px * 2 + 8px);
+        }
+
+        div img.img07 {
+            grid-area: img07;
+        }
+
+
+        /* grid2 */
+
+        div.grid2 {
+            display: grid;
+            place-items: center;
+            grid-template-areas:
+                "img08 img08 img09 img10"
+                "img08 img08 img11 img11"
+                "img12 img13 img11 img11";
+
+            margin: 2rem auto;
+            width: calc(180px * 3);
+            gap: 8px;
+        }
+
+        div.grid2 img {
+            border-radius: 4px;
+            outline: solid #000;
+            object-fit: cover;
+            height: 180px;
+            width: 180px;
+        }
+
+        div img.img08 {
+            grid-area: img08;
+            height: calc(180px * 2 + 8px);
+            width: calc(180px * 2 + 8px);
+        }
+
+        div img.img09 {
+            grid-area: img09;
+        }
+
+        div img.img10 {
+            grid-area: img10;
+        }
+
+        div img.img11 {
+            grid-area: img11;
+            height: calc(180px * 2 + 8px);
+            width: calc(180px * 2 + 8px);
+        }
+
+        div img.img12 {
+            grid-area: img12;
+        }
+
+        div img.img13 {
+            grid-area: img13;
+        }
+    </style>
+</head>
+
+<body class="css">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+        </a>
+    </nav>
+    <main>
+        <section class="bggrid">
+            <div class="grid1">
+                <img src="images/rse7ch.jpg" class="img01">
+                <img src="images/rd2ch.jpg" class="img02">
+                <img src="images/dvm5ch.jpg" class="img03">
+                <img src="images/Battlefield-2042.jpg" class="img04">
+                <img src="images/pubgch.jpg" class="img05">
+                <img src="images/gow5ch.jpg" class="img06">
+                <img src="images/bldch.jpg" class="img07">
+            </div>
+            <div class="grid2">
+                <img src="images/dedch.jpeg" class="img08">
+                <img src="images/shillch.jpg" class="img09">
+                <img src="images/rs3ch.jpg" class="img10">
+                <img src="images/jackch.jpg" class="img11">
+                <img src="images/fredch.png" class="img12">
+                <img src="images/fvch.jpg" class="img13">
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
+
+
+
+<!-- <div>
+    <img src="images/rse7ch.jpg" class="img08">
+    <img src="images/rd2ch.jpg" class="img09">
+    <img src="images/dvm5ch.jpg" class="img10">
+    <img src="images/Battlefield-2042.jpg" class="img11">
+    <img src="images/pubgch.jpg" class="img12">
+    <img src="images/gow5ch.jpg" class="img13">
+</div> -->

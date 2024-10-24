@@ -40,7 +40,7 @@
       background-position-y: calc(var(--size-step) *-1);
     }
 
-    section div.bg div.steps.rigth {
+    section div.bg div.steps.right {
       background-position-y: calc(var(--size-step) *-2);
     }
 
@@ -54,7 +54,7 @@
       }
     }
 
-    section  div.bg div.controls {
+    section div.bg div.controls {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -72,11 +72,11 @@
       height: 50px;
       width: 50px;
       transition: all 0.2s ease-in;
-
-      &:hover: {
+        /* &:hover: {
         background-color: #fffc;
-        transform: scale(1.05s);
-      }
+        transform: scale(1.05s); 
+      } */
+      
 
     }
 
@@ -105,17 +105,71 @@
         <div class="steps front"></div>
         <div class="controls">
           <div class="header">
-            <button class="btnBack">⬆️</button>
+            <button class="btnBack">▲</button>
             <div class="footer">
-              <button class="btnLeft">⬅️</button>
-              <button class="btnFront">⬇️</button>
-              <button class="btnRight">➡️</button>
+              <button class="btnLeft">◄</button>
+              <button class="btnFront">▼</button>
+              <button class="btnRight">►</button>
             </div>
           </div>
         </div>
       </div>
     </section>
   </main>
+
+  <script>
+    let btnFront = document.querySelector('.btnFront')
+    let btnBack  = document.querySelector('.btnBack')
+    let btnLeft  = document.querySelector('.btnLeft')
+    let btnRight = document.querySelector('.btnRight')
+  
+    let steps    = document.querySelector('.steps')
+  
+    btnFront.addEventListener('click', () => {
+        removeAllClasses()
+        steps.classList.add('front')
+    })
+  
+    btnBack.addEventListener('click', () => {
+        removeAllClasses()
+        steps.classList.add('back')
+    })
+  
+    btnLeft.addEventListener('click', () => {
+        removeAllClasses()
+        steps.classList.add('left')
+    })
+  
+    btnRight.addEventListener('click', () => {
+        removeAllClasses()
+        steps.classList.add('right')
+    })
+  
+    function removeAllClasses() {
+        steps.classList.remove('front', 'back', 'left', 'right')
+    }
+  
+    document.addEventListener('keyup', function(e) {
+        if(e.keyCode == 37) {
+            removeAllClasses()
+            steps.classList.add('left')
+        }
+        if(e.keyCode == 38) {
+            removeAllClasses()
+            steps.classList.add('back')
+        }
+        if(e.keyCode == 39) {
+            removeAllClasses()
+            steps.classList.add('right')
+        }
+        if(e.keyCode == 40) {
+            removeAllClasses()
+            steps.classList.add('front')
+        }
+    })
+  
+  </script>
+
 </body>
 
 </html>
