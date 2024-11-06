@@ -9,6 +9,9 @@ html(lang="en")
             body section.bgpug {
                 background-color: #e4d8cb;
             }
+            body section td {
+                margin-bottom: 6px;
+            }
             body section div {
                 width: 60px;
                 height: 80px;
@@ -30,8 +33,6 @@ html(lang="en")
                 table
                     - const divBackgrounds = ['#126464','#105064','#163c64','#1e2864','#281464','#330564','#3d0564','#460764','#500764','#5a0964']
                     each val, index in ['#08fafa','#17c8fa','#3296fa','#4b64fa','#6333fa','#7d01fa','#9601fa','#af01fa','#c801fa','#e101f9']
-                        tr
-                        tr
                         tr
                             td(style='width: 500px; height: 80px; color: white; display: flex; align-items: center; font-size: 1.5em; font-weight: bold; border-radius: 0 6px 6px 0 ; background-color: ' + val)
                                 div(style='background-color: ' + divBackgrounds[index] + '')= index + 1
