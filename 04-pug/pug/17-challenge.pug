@@ -5,6 +5,17 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title 17- Challenge
         link(rel="stylesheet", href="../../css/styles.css")
+        style.
+            body section.bgpug {
+                background-color: #e4d8cb;
+            }
+            body section div {
+                width: 60px;
+                height: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
     body.pug
         nav
             a(href="../index.html")
@@ -15,7 +26,7 @@ html(lang="en")
             header
                 h1 17- Challenge
                 h2 Provides an exercise to apply the learned concepts.
-            section(style='background-color: #e4d8cb')
+            section.bgpug
                 table
                     - const divBackgrounds = ['#126464','#105064','#163c64','#1e2864','#281464','#330564','#3d0564','#460764','#500764','#5a0964']
                     each val, index in ['#08fafa','#17c8fa','#3296fa','#4b64fa','#6333fa','#7d01fa','#9601fa','#af01fa','#c801fa','#e101f9']
@@ -23,4 +34,4 @@ html(lang="en")
                         tr
                         tr
                             td(style='width: 500px; height: 80px; color: white; display: flex; align-items: center; font-size: 1.5em; font-weight: bold; border-radius: 0 6px 6px 0 ; background-color: ' + val)
-                                div(style='width: 60px; height: 80px; display: flex; align-items: center; justify-content: center; background-color: ' + divBackgrounds[index] + '')= index + 1
+                                div(style='background-color: ' + divBackgrounds[index] + '')= index + 1
