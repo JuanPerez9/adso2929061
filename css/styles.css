@@ -435,7 +435,7 @@ body.pug {
             color: black; 
             border-radius: 80px;  
             span {
-                background-color: rgb(7, 91, 139);
+                background-color: rgb(249, 176, 67);
                 }
             }
 
@@ -444,14 +444,14 @@ body.pug {
             }
 
             a:is(:hover) {
-                background-color: rgb(102, 217, 246);
-                
+                background-color: rgb(120, 58, 0);
+                color: white;
             }
 
 
         }
 
-    img.logopug {
+    img {
         border-radius: 190px;
         background-color: rgba(213, 203, 138, 0.678);
         object-fit: cover;
