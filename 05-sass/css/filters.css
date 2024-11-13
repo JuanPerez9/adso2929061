@@ -1,0 +1,25 @@
+igure {
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+igure:hover {
+  transform: scale(1.05);
+}
+igure:hover.filter1 {
+  filter: grayscale(1);
+}
+igure:hover.filter2 {
+  filter: blur(4px);
+}
+igure:hover.filter3 {
+  filter: opacity(0.5);
+}
+igure:hover.filter4 {
+  filter: sepia(0.8);
+}
+igure:hover.filter5 {
+  filter: invert(1);
+}
+igure:hover.filter6 {
+  filter: brightness(2);
+}
