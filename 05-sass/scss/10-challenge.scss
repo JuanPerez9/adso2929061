@@ -15,7 +15,7 @@ body {
 // Header
 .header {
     background-color: #2a2a2a;
-    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.544);
+    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.545);
     position: fixed;
     width: 100%;
     z-index: 3;
@@ -31,7 +31,7 @@ body {
     li a {
         color: white;
         display: block;
-        padding: 20px 20px;
+        padding: 20px;
         border-right: 1px solid #2a2a2a;
         text-decoration: none;
 
@@ -53,7 +53,8 @@ body {
     .menu {
         clear: both;
         max-height: 0;
-        transition: max-height 0.2s ease-out;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
     }
 
     // Menu icon
@@ -70,12 +71,8 @@ body {
             display: block;
             height: 2px;
             position: relative;
-            transition: background 0.2s ease-out;
+            transition: background 0.3s ease-out;
             width: 18px;
-
-            &:hover {
-                background: $menu-icon-hover-color;
-            }
 
             &:before,
             &:after {
@@ -84,12 +81,8 @@ body {
                 display: block;
                 height: 100%;
                 position: absolute;
-                transition: all 0.2s ease-out;
+                transition: all 0.3s ease-out;
                 width: 100%;
-
-                &:hover {
-                    background: $menu-icon-hover-color;
-                }
             }
 
             &:before {
@@ -106,7 +99,7 @@ body {
         display: none;
 
         &:checked ~ .menu {
-            max-height: 240px;
+            max-height: 500px;
         }
 
         &:checked ~ .menu-icon .navicon {
@@ -127,8 +120,39 @@ body {
         }
     }
 
-    // Media query
-    @media (min-width: 855px) {
+    // Media queries
+    @media (max-width: 855px) {
+        ul {
+            display: block;
+            width: 100%;
+        }
+
+        li {
+            float: none;
+            text-align: center;
+        }
+
+        .menu {
+            max-height: 0;
+        }
+
+        .menu-icon {
+            display: inline-block;
+        }
+
+        .menu-btn {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            opacity: 0;
+            z-index: -1;
+        }
+    }
+
+    @media (min-width: 856px) {
         li {
             float: left;
         }
