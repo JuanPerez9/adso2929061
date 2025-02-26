@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <style>
+
+    nav.navbar.bg-custom,
+    a.btn.bg-custom {
+      color: #fff;
+      background-color: #9C0404;
+    }
+
+    div.row.hero {
+      padding-top: 88px;
+      div.col:nth-child(1) {
+        background-color: white;
+        height: 680px;
+      }
+      div.col:nth-child(2) {
+        background: #CC4545 url(../images/jpbgbootstrap2.png) no-repeat center 100%;
+        height: 680px;
+      }
+
+    h2 {
+      color: #A20000;
+    }
+    
+    p {
+      color: #7A0000;
+      
+    }
+    }
+
+    div.row.about {
+      div.col:nth-child(2) {
+        background-color: white;
+        height: 680px;
+      }
+      div.col:nth-child(1) {
+        background: #CC4545 url(../images/jpbgbootstrap.png) no-repeat center 100%;
+        height: 680px;
+      }
+
+    }
+
+    
+    
+    div.services.row {
+      background-color: #9D0303;
+      min-height: 680px;
+      div.col {
+        div.box {
+          background-color: #fff;
+          height: 200px;
+          width: 300px;
+        }
+      }
+
+      h3 {
+        text-shadow: -1px -1px 1px black;
+      }
+    }
+    
+    </style>
+</head>
+<body>
+    <!-- Narbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-custom p-4">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="../images/person-circle.svg" width="40px" alt="">
+            Juan Perez</a>
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse collapse" id="navbarCollapse">
+            <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link text-white" aria-current="page" href="#home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#about">About</a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link text-white" href="#services">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#portfolio">Portfolio</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <main class="container-fluid">
+      <!-- 01 - Hero -->
+  <div class="hero row row-cols-1 row-cols-md-2">
+    <div class="col text-light px-3 d-flex flex-column justify-content-center align-items-start">
+      <h3 class="fs-3 text-black p-2 m-2">Hi I am</h3>
+      <h2 class="fs-1 p-2 mt-2">Juan Perez</h2>
+      <p class="p-2 mt-2 fs-4">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur nesciunt odio dignissimos iure, ullam mollitia velit iusto itaque repudiandae explicabo vel esse. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </p>
+      <a href="" class="btn bg-custom p-2 mt-4">Hire Me</a>
+    </div>
+    <div class="col"></div>
+  </div>
+        <!-- 02 - About -->
+         <div class="about row row-cols-1 row-cols-md-2">
+            <div class="col">
+            </div>
+            <div class="col-lg-6 pt-5 d-flex flex-column justify-content-start">
+                <h2 class="fw-bold fs-1 mb-4">About</h2>
+                <h3 class="fs-4 mb-4">Why you hire me ?</h3>
+                <p class="text-justify mb-4">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere saepe 
+                  cum eaque distinctio voluptatibus deserunt, laborum sunt nulla vero, 
+                  ipsum veritatis ratione possimus nostrum aliquid aspernatur dolores 
+                  ea odit consectetur labore iste.
+                </p>
+                <h4 class="fw-bold fs-5">UI/UX Design</h4>
+                <div class="progress mb-4" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-black text-white progress-bar-striped progress-bar-animated" style="width: 60%">60%</div>
+                </div>
+                <h4 class="fw-bold fs-5">Web Design</h4>
+                <div class="progress mb-4" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-black text-white progress-bar-striped progress-bar-animated" style="width: 75%">75%</div>
+                </div>
+                <h4 class="fw-bold fs-5">HTML/CSS</h4>
+                <div class="progress mb-4" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-black text-white progress-bar-striped progress-bar-animated" style="width: 80%">80%</div>
+                </div>
+                <h4 class="fw-bold fs-5">Figma</h4>
+                <div class="progress mb-4" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-black text-white progress-bar-striped progress-bar-animated" style="width: 50%">50%</div>
+                </div>
+            </div>
+         </div>
+        <!-- 03 - Services -->
+         <div class="row services">
+            <a name="services"></a>
+            <div class="col-lg-12  pt-5 d-flex flex-column justify-content-start align-items-center">
+                <h2 class="fw-bold fs-1 text-white">Services</h2>
+                <h3 class="fs-4 mb-5 text-white">Service | Provide</h3>
+                <div class="container">
+                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-4">
+                    <div class="col d-flex justify-content-center align-items-center">
+                      <div class="bg-light rounded service-box d-flex flex-column justify-content-start align-items-start gap-2 pt-3 ps-3">
+                        <img src="../images/service01.svg" width="35px" alt="Service01" >
+                        <h5 class="fw-bold m-2">Graphic Design</h5>
+                        <p class="m-2">
+                          Lorem ipsum dolor, sit amet 
+                          consectetur adipisicing elit.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col d-flex justify-content-center align-items-center">
+                      <div class="bg-light rounded service-box d-flex flex-column justify-content-start align-items-start gap-2 pt-3 ps-3">
+                        <img src="../images/services02.svg" width="35px" alt="Services02" >
+                          <h5 class="fw-bold m-2">Web Design</h5>
+                        <p class="m-2">
+                          Lorem ipsum dolor, sit amet 
+                          consectetur adipisicing elit.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col d-flex justify-content-center align-items-center">
+                      <div class="bg-light rounded service-box d-flex flex-column justify-content-start align-items-start gap-2 pt-3 ps-3">
+                        <img src="../images/services03.svg" width="35px" alt="Services03" >
+                        <h5 class="fw-bold m-2">UI/UX Design</h5>
+                        <p class="m-2">
+                          Lorem ipsum dolor, sit amet 
+                          consectetur adipisicing elit.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col d-flex justify-content-center align-items-center">
+                      <div class="bg-light rounded service-box d-flex flex-column justify-content-start align-items-start gap-2 pt-3 ps-3">
+                        <img src="../images/service01.svg" width="35px" alt="Service01" >
+                        <h5 class="fw-bold">Frontend Development</h5>
+                        <p class="m-2">
+                          Lorem ipsum dolor, sit amet 
+                          consectetur adipisicing elit.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col d-flex justify-content-center align-items-center">
+                      <div class="bg-light rounded service-box d-flex flex-column justify-content-start align-items-start gap-3 pt-3 ps-3">
+                        <img src="../images/service01.svg" width="35px" alt="Service01" >
+                        <h5 class="fw-bold">Business Analysis</h5>
+                        <p class="m-2">
+                          Lorem ipsum dolor, sit amet 
+                          consectetur adipisicing elit.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col d-flex justify-content-center align-items-center">
+                      <div class="bg-light rounded service-box d-flex flex-column justify-content-start align-items-start gap-3 pt-3 ps-3">
+                        <img src="../images/service01.svg" width="35px" alt="Service01" >
+                        <h5 class="fw-bold">Digital Marketing</h5>
+                        <p class="m-2">
+                          Lorem ipsum dolor, sit amet 
+                          consectetur adipisicing elit.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+         </div>
+         <!-- 04 - Porfolio -->
+         <div class="row portfolio">
+            <a name="portfolio"></a>
+            <div class="col-lg-10 offset-lg-1">
+              <h2 class="fw-bold fs-1 mt-5">Portfolio</h2>
+              <h3 class="fs-4 mb-5">Lastest Projects</h3>
+              <div class="owl-carousel owl-theme">
+                <img src="images/portfolio01.png" width="360px" alt="Product01">
+                <img src="images/portfolio02.png" width="360px" alt="Product02">
+                <img src="images/portfolio03.png" width="360px" alt="Product03">
+              </div>
+            </div>
+         </div>
+         <!-- 05 - Footer -->
+          <div class="row footer">
+            <div class="col-lg-12">
+
+            </div>
+          </div>
+    </main>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script>
+      $('.owl-carousel').owlCarousel({
+          loop: true,
+          margin: 20,
+          autoplay: true,
+          nav: true,
+          responsive:{
+              0:{
+                  items: 1
+              },
+              600:{
+                  items: 2
+              },
+              1000:{
+                  items: 3
+              }
+          }
+      })
+    </script>
+</body>
+</html>
