@@ -6,7 +6,6 @@
     <title>Portfolio</title>
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="../css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../css/custom.css">
     <style>
@@ -44,7 +43,7 @@
         height: 680px;
       }
       div.col:nth-child(1) {
-        background: #CC4545 url(../images/jpbgbootstrap.png) no-repeat center 100%;
+        background: white url(../images/jpbgbootstrap.png) no-repeat center 100%;
         height: 680px;
       }
 
@@ -53,7 +52,7 @@
     
     
     div.services.row {
-      background-color: #9D0303;
+      background-color: #CC4545;
       min-height: 680px;
       div.col {
         div.box {
@@ -182,8 +181,8 @@
                     </div>
                     <div class="col d-flex justify-content-center align-items-center">
                       <div class="bg-light rounded service-box d-flex flex-column justify-content-start align-items-start gap-2 pt-3 ps-3">
-                        <img src="../images/service01.svg" width="35px" alt="Service01" >
-                        <h5 class="fw-bold">Frontend Development</h5>
+                        <img src="../images/services04.svg" width="35px" alt="Services04" >
+                        <h5 class="fw-bold m-3">UI/UX Design</h5>
                         <p class="m-2">
                           Lorem ipsum dolor, sit amet 
                           consectetur adipisicing elit.
@@ -192,8 +191,8 @@
                     </div>
                     <div class="col d-flex justify-content-center align-items-center">
                       <div class="bg-light rounded service-box d-flex flex-column justify-content-start align-items-start gap-3 pt-3 ps-3">
-                        <img src="../images/service01.svg" width="35px" alt="Service01" >
-                        <h5 class="fw-bold">Business Analysis</h5>
+                        <img src="../images/services05.svg" width="35px" alt="Service05" >
+                        <h5 class="fw-bold m-2">Business Analysis</h5>
                         <p class="m-2">
                           Lorem ipsum dolor, sit amet 
                           consectetur adipisicing elit.
@@ -202,7 +201,7 @@
                     </div>
                     <div class="col d-flex justify-content-center align-items-center">
                       <div class="bg-light rounded service-box d-flex flex-column justify-content-start align-items-start gap-3 pt-3 ps-3">
-                        <img src="../images/service01.svg" width="35px" alt="Service01" >
+                        <img src="../images/services06.svg" width="35px" alt="Service06" >
                         <h5 class="fw-bold">Digital Marketing</h5>
                         <p class="m-2">
                           Lorem ipsum dolor, sit amet 
@@ -220,10 +219,10 @@
             <div class="col-lg-10 offset-lg-1">
               <h2 class="fw-bold fs-1 mt-5">Portfolio</h2>
               <h3 class="fs-4 mb-5">Lastest Projects</h3>
-              <div class="owl-carousel owl-theme">
-                <img src="images/portfolio01.png" width="360px" alt="Product01">
-                <img src="images/portfolio02.png" width="360px" alt="Product02">
-                <img src="images/portfolio03.png" width="360px" alt="Product03">
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-4">
+                <img src="../images/ch1.jpg" width="360px" height="360px" alt="Product01">
+                <img src="../images/ch2.jpg" width="360px" height="360px" alt="Product02">
+                <img src="../images/ch3.jpg" width="360px" height="360px" alt="Product03">
               </div>
             </div>
          </div>
@@ -234,27 +233,5 @@
             </div>
           </div>
     </main>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/jquery-3.7.1.min.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script>
-      $('.owl-carousel').owlCarousel({
-          loop: true,
-          margin: 20,
-          autoplay: true,
-          nav: true,
-          responsive:{
-              0:{
-                  items: 1
-              },
-              600:{
-                  items: 2
-              },
-              1000:{
-                  items: 3
-              }
-          }
-      })
-    </script>
 </body>
 </html>
