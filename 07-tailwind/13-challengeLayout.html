@@ -73,7 +73,7 @@
                             font-[400]
                             rounded-[50px]">SIGN IN</a>
             
-            <a href="" class="flex
+            <a href="#signup" class="flex
                             justify-center
                             items-center
                             bg-white
@@ -163,7 +163,6 @@
                         flex">
 
             <input class="text-[#888]
-                        mt-[6px]
                         mx-[30px]
                         outline-none 
                         indent-4" type="text" placeholder="juanperez@gmail.com" required>
@@ -181,7 +180,7 @@
 
             <label class="flex
                         text-[#D1184D]
-                        mt-[45px]
+                        mt-[20px]
                         mx-[46px]
                         gap-1 
                         text-[#444]
@@ -195,7 +194,7 @@
                         flex">
 
             <input class="text-[#888]
-                        mt-[6px]
+                        
                         mx-[30px]
                         outline-none 
                         indent-4" type="password" placeholder="***********" required>
@@ -219,7 +218,7 @@
                     mx-[40px]
                     right-4">Forgot password?</h2>
             
-            <a href="" class="flex
+            <a href="#" class="flex
                         justify-center
                         items-center
                         bg-gradient-to-r from-[#D1184D] to-[#3E1926]
@@ -233,7 +232,7 @@
                         font-[400]
                         rounded-[50px]">SIGN IN</a>
 
-            <h2 class="absolute
+            <h2  class="absolute
                     text-[16px]
                     cursor-pointer
                     text-[#888]
@@ -245,7 +244,7 @@
                     text-[16px]
                     cursor-pointer
                     text-[#3A0011]
-                    mt-[69px]
+                    mt-[90px]
                     mx-[40px]
                     right-4">Sign up</h2>
             
@@ -255,23 +254,204 @@
 
 
         <!-- Screen 03 - Sign up -->
-        <section class="SignUp">
-            <!-- <section id="signup" class="Signup 
+
+        <section id="signup" class="Signup
                         w-[390px] 
                         h-[800px]
+                        transition-all
+                        ease-in
+                        duration-500
+                        translate-x-[-300%]
+                        target:translate-x-[0px]
                         my-4
                         rounded-[25px]
                         bg-gradient-to-r from-[#D1184D] to-[#3E1926]
                         overflow-hidden
-                        relative">
+                        absolute">
+
+            <a href="#welcome"  class="absolute 
+                                       left-[38px]
+                                       hover:translate-x-[-6px]
+                                       transition-all
+                                       top-[40px]">
+
+            <img src="images/arrow-left.png" alt="Back Welcome"></a>
+
+            <h2 class="text-white
+                        font-[500]
+                        text-[36px]
+                        mt-[100px]
+                        mx-[40px]">Create Your</h2>
+            <h2 class="text-white
+                        mx-[40px]
+                        font-[500]
+                        text-[36px]">Account</h2>
+
             <div class="absolute
                         rounded-t-[30px]
                         bottom-0
                         w-full
                         h-[534px]
                         bg-white">
-            </div> -->
-            </section>
+
+            <label class="flex
+                        text-[#D1184D]
+                        mt-[78px]
+                        mx-[46px]
+                        gap-1 
+                        text-[#444]
+                        text-[16px]
+                        font-[500]
+                        w-[320px]
+                        items-center">Full Name</label>
+
+            <div class="relative
+                        flex">
+
+            <input class="text-[#888]
+                        mx-[30px]
+                        outline-none 
+                        indent-4" type="text" placeholder="Juan Perez" required>
+
+            <img src="images/check.png" alt="Icono" class="absolute 
+                                                        right-4
+                                                        mx-[40px]
+                                                        text-[#D1184D]">
+            </div>
+
+            <hr class="border-t-2
+            border-[#888]
+            w-[292px]
+            mx-[46px]">
+
+            <label class="flex
+            text-[#D1184D]
+            mt-[14px]
+            mx-[46px]
+            gap-1 
+            text-[#444]
+            text-[16px]
+            font-[500]
+            w-[320px]
+            items-center">Phone or Gmail</label>
+
+            <div class="relative
+                        flex">
+
+            <input class="text-[#888]
+                        mx-[30px]
+                        outline-none 
+                        indent-4" type="text" placeholder="juanopere@gmail.com" required>
+
+            <img src="images/check.png" alt="Icono" class="absolute 
+                                                        right-4
+                                                        mx-[40px]
+                                                        text-[#D1184D]">
+            </div>
+
+            <hr class="border-t-2
+            border-[#888]
+            w-[292px]
+            mx-[46px]">
+
+
+            <label class="flex
+                        text-[#D1184D]
+                        mt-[20px]
+                        mx-[46px]
+                        gap-1 
+                        text-[#444]
+                        text-[16px]
+                        font-[500]
+                        w-[320px]
+                        items-center">Password</label>
+
+                            
+            <div class="relative
+                        flex">
+
+            <input class="text-[#888]
+                        
+                        mx-[30px]
+                        outline-none 
+                        indent-4" type="password" placeholder="***********" required>
+
+            <img src="images/eye.png" alt="Icono" class="absolute 
+                                                        right-4
+                                                        mx-[40px]
+                                                        text-[#D1184D]">
+            </div>
+
+            <hr class="border-t-2
+                        border-[#888]
+                        w-[292px]
+                        mx-[46px]">
+
+                        <label class="flex
+                        text-[#D1184D]
+                        mt-[20px]
+                        mx-[46px]
+                        gap-1 
+                        text-[#444]
+                        text-[16px]
+                        font-[500]
+                        w-[320px]
+                        items-center">Confirm Password</label>
+
+                            
+            <div class="relative
+                        flex">
+
+            <input class="text-[#888]
+                        
+                        mx-[30px]
+                        outline-none 
+                        indent-4" type="password" placeholder="***********" required>
+
+            <img src="images/eye.png" alt="Icono" class="absolute 
+                                                        right-4
+                                                        mx-[40px]
+                                                        text-[#D1184D]">
+            </div>
+
+            <hr class="border-t-2
+                        border-[#888]
+                        w-[292px]
+                        mx-[46px]">
+
+            
+            <a href="#signin" class="flex
+                        justify-center
+                        items-center
+                        bg-gradient-to-r from-[#D1184D] to-[#3E1926]
+                        text-white
+                        border-2
+                        mt-[20px]
+                        mx-[60px]
+                        h-[50px]
+                        w-[270px]
+                        text-[24px]
+                        font-[400]
+                        rounded-[50px]">SIGN IN</a>
+
+            <h2  class="absolute
+                    text-[16px]
+                    cursor-pointer
+                    text-[#888]
+                    mt-[49px]
+                    mx-[40px]
+                    right-4">Don't have account?</h2>
+
+            <h2 class="absolute
+                    text-[16px]
+                    cursor-pointer
+                    text-[#3A0011]
+                    mt-[90px]
+                    mx-[40px]
+                    right-4">Sign up</h2>
+            </div>
+
+        </section>
 
     </main>
     <script src="js/tailwind.js"></script>
