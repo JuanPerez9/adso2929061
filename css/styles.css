@@ -688,6 +688,12 @@ body.js {
     background-size: cover;
     header {
 
+        h1.titleJS{
+            text-shadow: -1px -1px 1px black,
+            1px 1px 1px black,
+            1px 1px 1px black;
+        }   
+
         h2 {
             border-bottom: none;
             max-width: 90%;
