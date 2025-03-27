@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02- Comments</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="js">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>02- Comments</h1>
+            <h2>Add comments to explain or annotate your code.</h2>
+        </header>
+        <section>
+            <h2 id="time">Loading...</h2>
+        </section>
+    </main>
+    <script>
+        
+        // This a line Comment
+        const time = document.getElementById('time')
+
+        // Add some styles
+        time.style.textAlign = 'center'
+        time.style.zoom = '3.2'
+        
+        /*
+            This is a blocke comment
+            Its used to multiple lines of code
+            or inactive portions of code
+        */
+
+        // This is a event time (intervale)
+        setInterval(function(){
+            let today   = new Date  //New Date
+            let hours   = today.getHours() // Get Hours
+            let minutes = today.getMinutes() // Get Minutes
+            let seconds = today.getSeconds() // Get Seconds
+
+            // Show time
+            time.textContent = `${hours}:${minutes}:${seconds}`
+        }, 1000) // 1 second = 1000 ms
+
+    </script>
+</body>
+</html>
