@@ -313,6 +313,38 @@
         btnMode.addEventListener('click', (e) => {
             calculator.classList.toggle('dark')
         })
+
+        // oprimir teclas
+        window.addEventListener('keydown', (e) => {
+            const key = e.key;
+
+            if (!isNaN(key) || key === '.') {
+                operation.value += key;
+            }
+
+            if (['+', '-', '*', '/', '%', '**'].includes(key)) {
+                operation.value += key;
+            }
+
+            if (key === 'Enter') {
+                e.preventDefault();
+                try {
+                    result.textContent = eval(operation.value);
+                } catch (error) {
+                    result.textContent = 'Error';
+                }
+            }
+
+            if (key === 'Backspace') {
+                operation.value = operation.value.slice(0, -1);
+            }
+
+            if (key === 'Escape') {
+                operation.value = '';
+                result.textContent = '';
+            }
+        });
+
     </script>
 </body>
 </html>
