@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13- Challenge Calculator</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jomhuria&family=Oswald:wght@200..700&family=Roboto+Slab&display=swap');
+        
+                div.calculator {
+                    width: 380px;
+                    height: 640px;
+                    background-color: #EAEDF2;
+                   margin: 0 auto;
+                    border-top: 15px solid  #000;
+                    border-bottom: 15px solid  #000;
+                    border-left: 10px solid  #000;
+                    border-right: 10px solid  #000;
+        
+                    header{ 
+                        position: relative;
+                        height: 180px;
+                        width: 325px;
+                        margin: 0 auto;
+                        .btn-mode {
+                            width: 92px;
+                            height: 60px;
+                            border: none;
+                            background:url(images/calc/light.mode.svg) no-repeat center center;
+                            position: absolute;
+                            top: 20px;
+                            cursor: pointer;
+                            transition: tranform 0.2s ease-in;
+                            &:hover {
+                                transform: scale(1.1);
+                            }
+                        }
+                        input.operation{
+                            color: #000;
+                            background-color: transparent;
+                            font-size: 18px;
+                            position: absolute;
+                            top: 80px;
+                            width: 100%;
+                            text-align: right;
+                            font-weight: 500;
+                            border: none;
+                            outline: none;
+                        }
+                        h4.result{
+                            position: absolute;
+                            color: #000;
+                            font-size:60px;
+                            font-family: Inter;
+                            font-weight: 600;
+                            right: 0;
+                           
+                            top: 105px;
+                        }
+                    }
+                    footer{
+                        display: grid;
+                        grid-template-columns: repeat(4, 80px);
+                        gap: 5px;
+                        width: 320px;
+                        margin: 0.6rem auto 10px auto;
+                        button{
+                            border: none;
+                            cursor: pointer;
+                            opacity: 0.8;
+                            height: 80px;
+                            transition: all 0.2s ease-in;
+                            &:hover {
+                                opacity: 1;
+                                transform: scale(1.1);
+                            }
+                            &.btn-clear {
+                                background: url(images/calc/btn-clear.svg) no-repeat center center;
+                            }
+                            &.btn-del {
+                                background: url(images/calc/btn-del.svg) no-repeat center center;
+                            }
+                            &.btn-div {
+                                background: url(images/calc/btn-div.svg) no-repeat center center;
+                            }
+                            &.btn-mod {
+                                background: url(images/calc/btn-mod.svg) no-repeat center center;
+                            }
+                            &.btn-1 {
+                                background: url(images/calc/btn-1.svg) no-repeat center center;
+                            }
+                            &.btn-2 {
+                                background: url(images/calc/btn-2.svg) no-repeat center center;
+                            }
+                            &.btn-3 {
+                                background: url(images/calc/btn-3.svg) no-repeat center center;
+                            }
+                            &.btn-mult {
+                                background: url(images/calc/btn-mult.svg) no-repeat center center;
+                            }
+                            &.btn-4 {
+                                background: url(images/calc/btn-4.svg) no-repeat center center;
+                            }
+                            &.btn-5 {
+                                background: url(images/calc/btn-5.svg) no-repeat center center;
+                            }
+                            &.btn-6 {
+                                background: url(images/calc/btn-6.svg) no-repeat center center;
+                            }
+                            &.btn-subs {
+                                background: url(images/calc/btn-subs.svg) no-repeat center center;
+                            }
+                            &.btn-7 {
+                                background: url(images/calc/btn-7.svg) no-repeat center center;
+                            }
+                            &.btn-8 {
+                                background: url(images/calc/btn-8.svg) no-repeat center center;
+                            }
+                            &.btn-9 {
+                                background: url(images/calc/btn-9.svg) no-repeat center center;
+                            }
+                            &.btn-plus {
+                                background: url(images/calc/btn-plus.svg) no-repeat center center;
+                            }
+                            &.btn-0 {
+                                background: url(images/calc/btn-0.svg) no-repeat center center;
+                            }
+                            &.btn-dot {
+                                background: url(images/calc/btn-dot.svg) no-repeat center center;
+                            }
+                            &.btn-pow {
+                                    background: url(images/calc/btn-pow.svg) no-repeat center center;
+                                }
+                            &.btn-equal {
+                                background: url(images/calc/btn-equal.svg) no-repeat center center;
+                            }
+        
+                        }
+                    }
+                    &.dark {
+                        background-color: #1F1F1F;
+                        border-top: 15px solid  #fff;
+                        border-bottom: 15px solid  #fff;
+                        border-left: 10px solid  #fff;
+                        border-right: 10px solid  #fff;
+                        header{
+                            input.operation{
+                                color: #ffffff;
+                                background-color: transparent;
+                            }
+                            h4.result{
+                                color: #fff;
+                            }
+                            .btn-mode{
+                                background:url(images/calc/dark-mode.svg) no-repeat center center;
+                            }
+                        }
+                        footer{
+                            button{
+                                opacity: 0.5;
+                                &:hover {
+                                    opacity: 1;
+                                    transform: scale(1.1);
+                                }
+                                &.btn-clear {
+                                    background: url(images/calc/btn-clear-dark.svg) no-repeat center center !important;
+                                }
+                                &.btn-del {
+                                    background: url(images/calc/btn-del-dark.svg) no-repeat center center;
+                                }
+                                &.btn-pow {
+                                    background: url(images/calc/btn-pow-dark.svg) no-repeat center center;
+                                }
+                                &.btn-mod {
+                                    background: url(images/calc/btn-mod-dark.svg) no-repeat center center;
+                                }
+                                &.btn-1 {
+                                    background: url(images/calc/btn-1-dark.svg) no-repeat center center;
+                                }
+                                &.btn-2 {
+                                    background: url(images/calc/btn-2-dark.svg) no-repeat center center;
+                                }
+                                &.btn-3 {
+                                    background: url(images/calc/btn-3-dark.svg) no-repeat center center;
+                                }
+                                &.btn-mult {
+                                    background: url(images/calc/btn-mult-dark.svg) no-repeat center center;
+                                }
+                                &.btn-4 {
+                                    background: url(images/calc/btn-4-dark.svg) no-repeat center center;
+                                }
+                                &.btn-5 {
+                                    background: url(images/calc/btn-5-dark.svg) no-repeat center center;
+                                }
+                                &.btn-6 {
+                                    background: url(images/calc/btn-6-dark.svg) no-repeat center center;
+                                }
+                                &.btn-subs {
+                                    background: url(images/calc/btn-subs-dark.svg) no-repeat center center;
+                                }
+                                &.btn-7 {
+                                    background: url(images/calc/btn-7-dark.svg) no-repeat center center;
+                                }
+                                &.btn-8 {
+                                    background: url(images/calc/btn-8-dark.svg) no-repeat center center;
+                                }
+                                &.btn-9 {
+                                    background: url(images/calc/btn-9-dark.svg) no-repeat center center;
+                                }
+                                &.btn-plus {
+                                    background: url(images/calc/btn-plus-dark.svg) no-repeat center center;
+                                }
+                                &.btn-div {
+                                    background: url(images/calc/btn-div-dark.svg) no-repeat center center;
+                                }
+                                &.btn-0 {
+                                    background: url(images/calc/btn-0-dark.svg) no-repeat center center;
+                                }
+                                &.btn-dot {
+                                    background: url(images/calc/btn-dot-dark.svg) no-repeat center center;
+                                }
+                                &.btn-equal {
+                                    background: url(images/calc/btn-equal-dark.svg) no-repeat center center;
+                                }
+        
+                            }
+                        }
+                    }
+                }
+            </style>        
+</head>
+<body class="js">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>13- Challenge Calculator</h1>
+            <h2>Challenge</h2>
+        </header>
+        <section>
+            <div class="calculator">
+                <header>
+                    <button class="btn-mode"></button>
+                    <input type="text"  class="operation" readonly>
+                    <h4 class="result"></h4>
+                </header>
+                <footer>
+                    <button class="btn-clear"></button>
+                    <button class="btn-del"></button>
+                    <button class="btn-div" data-opr="/"></button>
+                    <button class="btn-mod" data-opr="%"></button>
+                    <button class="btn-1" data-num="1"></button>
+                    <button class="btn-2" data-num="2"></button>
+                    <button class="btn-3" data-num="3"></button>
+                    <button class="btn-mult" data-opr="*"></button>
+                    <button class="btn-4" data-num="4"></button>
+                    <button class="btn-5" data-num="5"></button>
+                    <button class="btn-6" data-num="6"></button>
+                    <button class="btn-subs" data-opr="-"></button>
+                    <button class="btn-7" data-num="7"></button>
+                    <button class="btn-8" data-num="8"></button>
+                    <button class="btn-9" data-num="9"></button>
+                    <button class="btn-plus" data-opr="+"></button>
+                    <button class="btn-0" data-num="0"></button>
+                    <button class="btn-dot" data-opr="."></button>
+                    <button class="btn-pow" data-opr="**"></button>
+                    <button class="btn-equal" style="border: none;"></button>
+
+                </footer>
+            </div>
+        </section>
+    </main>
+    <script>
+            const calculator = document.querySelector('div.calculator')
+            const operation = document.querySelector('input.operation')
+            const result = document.querySelector('h4.result')
+            const btnNumbers = document.querySelectorAll('button[data-num]')
+            const btnOpers = document.querySelectorAll('button[data-opr]')
+            const btnClear = document.querySelector('button.btn-clear')
+            const btnDel = document.querySelector('button.btn-del')
+            const btnEqual = document.querySelector('button.btn-equal')
+            const btnMode = document.querySelector('button.btn-mode')
+        
+            
+
+            //Events 
+            btnClear.addEventListener('click', (e) => {
+                operation.value = ''
+                result.innerHTML = ''
+            })
+
+            btnNumbers.forEach(btn =>  {
+                btn.addEventListener('click', (e) => {
+                    operation.value +=  btn.dataset.num
+            })
+        })
+        btnOpers.forEach(btn =>  {
+            btn.addEventListener('click', (e) => {
+                operation.value +=  btn.dataset.opr
+            })
+        })
+        btnDel.addEventListener('click', (e) => {
+            operation.value = operation.value.slice(0, -1)
+        })
+        btnEqual.addEventListener('click', (e) => {
+            result.textContent = eval(operation.value)
+        })
+        btnMode.addEventListener('click', (e) => {
+            calculator.classList.toggle('dark')
+        })
+    </script>
+</body>
+</html>

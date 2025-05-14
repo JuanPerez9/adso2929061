@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06- Types Objects</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        section ul.objects {
+            list-style: none;
+            padding: 0;
+            li {
+                border-radius: 0.4rem;
+                padding: 0.4rem;
+                background-color: #fff9;
+                margin-top: 0.4rem;
+                color: #000;
+                b{
+                    font-weight: 600;
+                    color: #0006;
+                }
+            }
+        }
+    </style>
+</head>
+<body class="js">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>06- Types Objects</h1>
+            <h2>Learn to write and execute basic JavaScript code.</h2>
+        </header>
+        <section>
+            <ul class="objects"></ul>
+           <script>
+            const objects = document.querySelector('ul.objects')
+
+            //Object  String
+            const objString = new String('Hello')
+            objects.innerHTML = `<li> Type: <b> ${objString.constructor.name}  --> ${objString}</b></li>`
+
+            //Object  Number
+            const objNumber = new Number(128)
+            objects.innerHTML += `<li> Type: <b> ${objNumber.constructor.name}  --> ${objNumber}</b></li>`
+
+            //Object  Boolean
+            const objBoolean = new Boolean(67>1)
+            objects.innerHTML += `<li> Type: <b> ${objBoolean.constructor.name}--> ${objBoolean}</b></li>`
+
+              //Object  Array
+            const objArray = new Array('🚗','🚢','🛩️')
+            objects.innerHTML += `<li> Type: <b> ${objArray.constructor.name}  --> ${objArray}</b></li>`
+
+              //Object  Array
+              const objDate = new Date('04/09/2025')
+            objects.innerHTML += `<li> Type: <b> ${objDate.constructor.name}  --> ${objDate.getFullYear()}</b></li>`
+
+              //Object  Array
+              const objObject = new Object('vehicle')
+            objects.innerHTML += `<li> Type: <b> ${objObject.constructor.name}  --> ${objObject}</b></li>`
+           </script>
+        </section>
+    </main></body>
+</html>
