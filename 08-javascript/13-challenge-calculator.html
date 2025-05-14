@@ -229,6 +229,12 @@
                         }
                     }
                 }
+
+                button.active-press {
+                transform: scale(1.5);
+                box-shadow: 0 0 5px #666;
+                }
+
             </style>        
 </head>
 <body class="js">
@@ -276,6 +282,8 @@
         </section>
     </main>
     <script>
+
+
             const calculator = document.querySelector('div.calculator')
             const operation = document.querySelector('input.operation')
             const result = document.querySelector('h4.result')
@@ -314,16 +322,41 @@
             calculator.classList.toggle('dark')
         })
 
-        // oprimir teclas
+        // Soporte de teclado
         window.addEventListener('keydown', (e) => {
             const key = e.key;
 
-            if (!isNaN(key) || key === '.') {
+            const animateButton = (selector) => {
+                const btn = document.querySelector(selector);
+                if (btn) {
+                    btn.classList.add('active-press');
+                    setTimeout(() => {
+                        btn.classList.remove('active-press');
+                    }, 100);
+                }
+            };
+
+            if (!isNaN(key)) {
                 operation.value += key;
+                animateButton(`button[data-num="${key}"]`);
             }
 
-            if (['+', '-', '*', '/', '%', '**'].includes(key)) {
+            if (key === '.') {
                 operation.value += key;
+                animateButton(`button[data-opr="."]`);
+            }
+
+            const operators = {
+                '+': 'btn-plus',
+                '-': 'btn-subs',
+                '*': 'btn-mult',
+                '/': 'btn-div',
+                '%': 'btn-mod'
+            };
+
+            if (Object.keys(operators).includes(key)) {
+                operation.value += key;
+                animateButton(`button.${operators[key]}`);
             }
 
             if (key === 'Enter') {
@@ -333,17 +366,36 @@
                 } catch (error) {
                     result.textContent = 'Error';
                 }
+                animateButton(`button.btn-equal`);
             }
 
             if (key === 'Backspace') {
                 operation.value = operation.value.slice(0, -1);
+                animateButton(`button.btn-del`);
             }
 
             if (key === 'Escape') {
                 operation.value = '';
                 result.textContent = '';
+                animateButton(`button.btn-clear`);
             }
         });
+
+
+
+        // Dark Mode
+        const darkMode = window.matchMedia('(prefers-color-scheme: dark)')
+        darkMode.addListener(darkModeChange)
+
+        function darkModeChange(dm) {
+            if (dm.matches) {
+                calculator.classList.add('dark')
+            } else {
+                calculator.classList.remove('dark')
+            }
+        }
+        darkModeChange(darkMode)
+
 
     </script>
 </body>
