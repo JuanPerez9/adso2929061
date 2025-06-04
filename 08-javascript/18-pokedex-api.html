@@ -7,6 +7,12 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/styles.css">
     <style>
+        select.pk-generation{
+            appearance: none;
+            padding: 0.4rem 0.8rem;
+            display: flex;
+            margin: 2rem auto;
+        }
         ul.pokemons{
             list-style: none;
             margin: 0;
@@ -21,6 +27,17 @@
                     margin: 0;
                     text-align: center;
                 }
+            }
+            &.hide {
+                display: none;
+            }
+        }
+        img.loader{
+            display: flex;
+            margin: 8rem auto;
+            width: 160px;
+            &.hide {
+                display: none;
             }
         }
     </style>
@@ -37,23 +54,149 @@
             <h2>""</h2>
         </header>
         <section>
+            <select class="pk-generation">
+            </select>
+            <img src="images/loader-pika.gif" class="loader">
             <ul class="pokemons"></ul>
         </section>
     </main>
     <script>
+        // objects
+        const generations = {
+                range: [
+                    { from: 1, to: 151 },
+                    { from: 152, to: 251 },
+                    { from: 252, to: 386 },
+                    { from: 387, to: 493 },
+                    { from: 494, to: 649 },
+                    { from: 650, to: 721 },
+                    { from: 722, to: 809 },
+                    { from: 810, to: 890 },
+                    { from: 891, to: 1025 }
+                ]                                 
+            }
+
+        // types
+        const types = {
+
+                    normal:
+
+                        "#a8a77a",
+
+                    fire:
+
+                        "#ee8130",
+
+                    water:
+
+                        "#6390f0",
+
+                    electric:
+
+                        "#f7d02c",
+
+                    grass:
+
+                        "#7ac74c",
+
+                    ice:
+
+                        "#96d9d6",
+
+                    fighting:
+
+                        "#c22e28",
+
+                    poison:
+
+                        "#a33ea1",
+
+                    ground:
+
+                        "#e2bf65",
+
+                    flying:
+
+                        "#a98ff3",
+
+                    psychic:
+
+                        "#f95587",
+
+                    bug:
+
+                        "#a6891a",
+
+                    rock:
+
+                        "#b6a136",
+
+                    ghost:
+
+                        "#735797",
+
+                    dragon:
+
+                        "#6f35fc",
+
+                    dark:
+
+                        "#705746",
+
+                    steel:
+
+                        "#b7b7ce",
+
+                    fairy:
+
+                        "#d685ad",
+
+                    shadow: 
+                    
+                        "#5a5a5a",
+
+                    unknown: 
+                    
+                        "#68a090"
+                }
+
+        // select
+        const pkGeneration = document.querySelector('.pk-generation')
+        pkGeneration.innerHTML = `<option value="">Select a Generation...</option>`
+        generations['range'].forEach((element, index) => {
+             pkGeneration.innerHTML += `<option value="${index}">Generation ${++index}</option>`
+         })
+
+        // events
+        pkGeneration.addEventListener('change', function(e) {
+            if(this.value != '') {
+            loadPokemons(generations.range[this.value].from, 
+                         generations.range[this.value].to)
+            }
+        })
+
         // Elements
         const pokemons = document.querySelector('.pokemons')
+        const loader   = document.querySelector('.loader')
         const loadPokemons = async (start, end) => {
+            loader.classList.remove('hide')
+            pokemons.classList.add('hide')
+            pokemons.innerHTML = ''
+            setTimeout(() => {
+                loader.classList.add('hide')
+                pokemons.classList.remove('hide')
+            }, 4000);
             for(let pk=start; pk<=end; pk++) {
                 const url = `https://pokeapi.co/api/v2/pokemon/${pk}`
                 const response = await fetch(url)
                 const data = await response.json()
-                pokemons.innerHTML += `<li> 
+                const typeColor = data.types[0].type.name
+                pokemons.innerHTML += `<li style="border-color: ${types[typeColor]}; background: linear-gradient(black, ${types[typeColor]})">
                                             <h4>${data.id}</h4> 
                                             <h5>${data.name}</h5>
                                             <img src="${data.sprites.front_default}">
                                        </li>`
-            }
+            }  
         }
         loadPokemons(1,151)
     </script>
