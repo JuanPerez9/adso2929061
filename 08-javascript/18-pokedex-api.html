@@ -7,19 +7,93 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/styles.css">
     <style>
-        select.pk-generation{
-            appearance: none;
-            padding: 0.4rem 0.8rem;
-            display: flex;
-            margin: 2rem auto;
+
+        /* interfaz 1 */
+
+            section.intro-screen .intro-container {
+            position: relative;
+            /* display: inline-block; */
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            }
+
+            section.intro-screen .intro-container img {
+            width: 100%;
+            display: block;
+            border-radius: 1rem;
+            }
+
+            .go-btn {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            background: url("images/GO.png") no-repeat center center;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            }
+
+            .go-btn:hover {
+            transform: translateX(-50%) scale(1.1);
+            filter: brightness(2);
+            }
+
+        /* interfaz 2 */
+
+        .hide {
+            display: none;
         }
+
+        .pokedex-card {
+            background-image: url(images/intro2.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 1.5rem;
+            border: 4px solid #444;
+            padding: 2rem 1rem;
+            width: 400px;
+            height: 700px;
+            margin: 0 auto;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        section nav.back-nav {
+            position: absolute !important;
+            top: 1rem;
+            left: 1rem;
+            z-index: 10;
+        }
+
+        
+        select.pk-generation{
+            cursor: pointer;
+            appearance: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 2px solid #fff;
+            background-color: rgba(0,0,0,0.4);
+            color: white;
+            font-weight: bold;
+            margin: 2rem auto;
+            display: block;
+        }
+
         ul.pokemons{
+            scrollbar-width: none;
             list-style: none;
             margin: 0;
             padding: 0;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 0.4rem;
+            height: 555px;
+            overflow-y: auto;
             li {
                 border: 2px solid #fff9;
                 border-radius: 0.4rem;
@@ -32,6 +106,21 @@
                 display: none;
             }
         }
+
+        ul.pokemons li {
+            border: 2px solid #fff9;
+            border-radius: 0.4rem;
+            padding: 0.4rem;
+            background-color: rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        ul.pokemons li:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+        }
+
         img.loader{
             display: flex;
             margin: 8rem auto;
@@ -40,27 +129,50 @@
                 display: none;
             }
         }
+
+
     </style>
 </head>
 <body class="js">
     <nav>
         <a href="index.html">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
         </a>
     </nav>
     <main>
         <header>
             <h1>18- Pokedex</h1>
-            <h2>""</h2>
+            <h2>Fetch and display data from the Pokedex API.</h2>
         </header>
-        <section>
-            <select class="pk-generation">
-            </select>
-            <img src="images/loader-pika.gif" class="loader">
-            <ul class="pokemons"></ul>
+
+        <section class="intro-screen">
+            <div class="intro-container">
+                <img src="images/intro.png" alt="Intro" class="intro-image">
+                <button class="go-btn"></button>
+            </div>
         </section>
+
+        <section class="pokedex hide">
+        <div class="pokedex-card">
+            <nav class="back-nav">
+                <a href="18-pokedex-api.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path fill="#dedede" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                    </svg>
+                </a>
+            </nav>
+            <select class="pk-generation"></select>
+            <img src="images/loader-pika.gif" class="loader hide">
+            <ul class="pokemons"></ul>
+        </div>
+        <div class="pokemon-stats">
+
+        </div>
+        </section>
+
     </main>
     <script>
+
         // objects
         const generations = {
                 range: [
@@ -79,85 +191,26 @@
         // types
         const types = {
 
-                    normal:
-
-                        "#a8a77a",
-
-                    fire:
-
-                        "#ee8130",
-
-                    water:
-
-                        "#6390f0",
-
-                    electric:
-
-                        "#f7d02c",
-
-                    grass:
-
-                        "#7ac74c",
-
-                    ice:
-
-                        "#96d9d6",
-
-                    fighting:
-
-                        "#c22e28",
-
-                    poison:
-
-                        "#a33ea1",
-
-                    ground:
-
-                        "#e2bf65",
-
-                    flying:
-
-                        "#a98ff3",
-
-                    psychic:
-
-                        "#f95587",
-
-                    bug:
-
-                        "#a6891a",
-
-                    rock:
-
-                        "#b6a136",
-
-                    ghost:
-
-                        "#735797",
-
-                    dragon:
-
-                        "#6f35fc",
-
-                    dark:
-
-                        "#705746",
-
-                    steel:
-
-                        "#b7b7ce",
-
-                    fairy:
-
-                        "#d685ad",
-
-                    shadow: 
-                    
-                        "#5a5a5a",
-
-                    unknown: 
-                    
-                        "#68a090"
+                    normal: "#a8a77a",
+                    fire: "#ee8130",
+                    water: "#6390f0",
+                    electric: "#f7d02c",
+                    grass: "#7ac74c",
+                    ice: "#96d9d6",
+                    fighting: "#c22e28",
+                    poison: "#a33ea1",
+                    ground: "#e2bf65",
+                    flying: "#a98ff3",
+                    psychic: "#f95587",
+                    bug: "#a6891a",
+                    rock: "#b6a136",
+                    ghost: "#735797",
+                    dragon: "#6f35fc",
+                    dark: "#705746",
+                    steel: "#b7b7ce",
+                    fairy: "#d685ad",
+                    shadow: "#5a5a5a",
+                    unknown: "#68a090"
                 }
 
         // select
@@ -174,6 +227,16 @@
                          generations.range[this.value].to)
             }
         })
+        
+        // alternar
+        const introScreen = document.querySelector('.intro-screen');
+        const pokedex = document.querySelector('.pokedex');
+        const goBtn = document.querySelector('.go-btn');
+        goBtn.addEventListener('click', () => {
+            introScreen.classList.add('hide');
+            pokedex.classList.remove('hide');
+        });
+
 
         // Elements
         const pokemons = document.querySelector('.pokemons')
@@ -196,7 +259,7 @@
                                             <h5>${data.name}</h5>
                                             <img src="${data.sprites.front_default}">
                                        </li>`
-            }  
+            }
         }
         loadPokemons(1,151)
     </script>
