@@ -39,7 +39,7 @@
                     <div class="controls">
                         <a href="show.php?id=<?=$pet['id']?>" class="show"></a>
                         <a href="edit.php?id=<?=$pet['id']?>" class="edit"></a>
-                        <a href="javascript:deletePet(=<?=$pet['id']?>, '=<?=$pet['name']?>')" class="delete"></a>
+                        <a href="javascript:deletePet(<?=$pet['id']?>, '<?=$pet['name']?>')" class="delete"></a>
                     </div>
                </td>
            </tr>
@@ -52,5 +52,12 @@
         ?> 
        </table>
     </main>
+    <script>
+        function deletePet(id, name) {
+            if(confirm(`Está seguro(a)? \n\n Va a eliminar a ${name}`)){
+                window.location.replace('delete.php?id='+id)
+            }
+        }
+    </script>
 </body>
 </html>

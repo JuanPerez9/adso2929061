@@ -101,19 +101,73 @@
     function addPet($name, $specie_id, $breed_id, $sex_id, $photo, $conx) {
         try {
             $sql = "INSERT INTO pets (name, specie_id, breed_id, sex_id, photo)
-                    VALUES (:name, :specie_id, :breed_id, :sexe_id, :photo)";
+                    VALUES (:name, :specie_id, :breed_id, :sex_id, :photo)";
             $stmt = $conx->prepare($sql);
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':specie_id', $specie_id);
             $stmt->bindParam(':breed_id', $breed_id);
             $stmt->bindParam(':sex_id', $sex_id);
             $stmt->bindParam(':photo', $photo);
-            if($stmt->execute()) {
-                return true;
-            } else {
-                return false;
-            }
+            
+            return $stmt->execute();
+            
+        } catch (PDOException $e) {
+            error_log("Error al agregar mascota: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    // Show Pet
+        function showPet($id, $conx) {
+        try {
+            $sql = "SELECT p.name AS name,
+                            p.photo AS photo,
+                            s.name AS specie,
+                            b.name AS breed,
+                            x.name As sex
+                    FROM pets AS p,
+                        species AS s,
+                        breeds AS b,
+                        sexes AS x
+                    WHERE s.id = p.specie_id
+                    AND b.id = p.breed_id
+                    AND p.id = :id";
+            $stmt = $conx->prepare($sql);
+            $stmt->bindparam(":id", $id);
+            $stmt->execute();
+            return $stmt->fetch();
         } catch (PDOException $e) {
             echo 'Error: ' . $e->getMessage();
         }
     }
+
+
+    // delete pet
+    function deletePet($id, $conx) {
+        try {
+            // Primero obtener el nombre de la foto para eliminarla
+            $sql_select = "SELECT photo FROM pets WHERE id = :id";
+            $stmt_select = $conx->prepare($sql_select);
+            $stmt_select->bindParam(":id", $id, PDO::PARAM_INT);
+            $stmt_select->execute();
+            $pet = $stmt_select->fetch();
+            
+            // Eliminar el registro de la base de datos
+            $sql_delete = "DELETE FROM pets WHERE id = :id";
+            $stmt_delete = $conx->prepare($sql_delete);
+            $stmt_delete->bindParam(":id", $id, PDO::PARAM_INT);
+            $result = $stmt_delete->execute();
+            
+            // Si se eliminó correctamente, borrar la foto
+            if ($result && $pet && !empty($pet['photo']) && file_exists("../uploads/" . $pet['photo'])) {
+                unlink("../uploads/" . $pet['photo']);
+            }
+            
+            return $result;
+            
+        } catch (PDOException $e) {
+            error_log("Error al eliminar mascota: " . $e->getMessage());
+            return false;
+        }
+    }
+    

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28 - Challenge-Events-Time</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .contenedor {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .btn-play {
+            position: absolute;
+            top: 85%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .btn-play:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .btn-play:active {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+
+        /* --- Selector de gatos --- */
+        .selector {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-arrow {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-arrow:hover {
+            transform: scale(1.2);
+        }
+
+        .btn-arrow:active {
+            transform: scale(0.9);
+        }
+
+        .cat-preview {
+            width: 90px;
+            height: auto;
+            animation: float 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .cat-preview.active {
+            filter: drop-shadow(0 0 10px rgba(16, 213, 253, 0.715));
+            transform: scale(1.1);
+        }
+
+        /* Pantalla de juego */
+        #game-screen {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+
+        #hud {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Botón de regreso */
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Animaciones */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body class="js">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>28 - Challenge-Events-Time</h1>
+            <h2>Create time-based interactive challenges.</h2>
+        </header>
+
+        <!-- Pantalla de inicio -->
+        <section id="start-screen">
+            <div class="contenedor">
+                <img src="images/challenge/bg-inicial.png" class="intro-game">
+
+                <div class="selector">
+                    <img src="images/challenge/btn-izquierdo.png" class="btn-arrow" id="btn-left">
+                    <!-- solo una imagen que cambia -->
+                    <img src="images/challenge/cat1.png" class="cat-preview active" id="cat">
+                    <img src="images/challenge/btn-derecho.png" class="btn-arrow" id="btn-right">
+                </div>
+
+                <div class="button-play">
+                    <img src="images/challenge/play.png" class="btn-play" id="btnPlay">
+                </div>
+            </div>
+        </section>
+
+        <!-- Pantalla de juego (oculta inicialmente) -->
+        <section id="game-screen">
+            <div id="hud">
+                <span>Vidas: </span>
+                <span id="lives"></span>
+            </div>
+            <canvas id="gameCanvas" width="800" height="400"></canvas>
+            <div class="back-button" id="backButton">Volver al Menú</div>
+        </section>
+    </main>
+
+    <script>
+        // Elementos DOM
+        const cat = document.getElementById("cat");
+        const btnLeft = document.getElementById("btn-left");
+        const btnRight = document.getElementById("btn-right");
+        const btnPlay = document.getElementById("btnPlay");
+        const startScreen = document.getElementById("start-screen");
+        const gameScreen = document.getElementById("game-screen");
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const livesContainer = document.getElementById("lives");
+        const backButton = document.getElementById("backButton");
+        const background = new Image();
+        background.src = "images/challenge/fondo-game.jpg";
+
+        // Lista de gatos
+        const cats = [
+            "images/challenge/cat1.png",
+            "images/challenge/cat2.png"
+        ];
+
+        // Variables del juego
+        let currentIndex = 0;
+        let lives = 3;
+        let selectedCat;
+        let backgroundX = 0;
+        let playerImg = new Image();
+        let gameInterval;
+
+        let playerX = 50;
+        let playerY = canvas.height / 2;
+        let playerSpeed = 5;
+
+        let obstacles = [];
+        let score = 0;
+        let keys = {};
+
+        let lastLifeSpawn = 0; // último frame donde se creó una vida
+        let lifeCooldown = 600; // frames de espera (~10 segundos si 60fps)
+
+
+        let extraLives = []; // array de vidas en pantalla
+        const lifeImg = new Image();
+        lifeImg.src = "images/challenge/life.png"; // usa un sprite/imagen de vida
+
+        document.addEventListener("keydown", (e) => {
+            keys[e.code] = true;
+        });
+
+        document.addEventListener("keyup", (e) => {
+            keys[e.code] = false;
+        });
+
+        // Mover jugador con flechas
+        if (keys["ArrowLeft"] && playerX > 0) {
+            playerX -= playerSpeed;
+        }
+        if (keys["ArrowRight"] && playerX < canvas.width - 90) {
+            playerX += playerSpeed;
+        }
+
+        // Cambiar gato a la izquierda
+        btnLeft.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + cats.length) % cats.length;
+            updateCatPreview();
+        });
+
+        // Cambiar gato a la derecha
+        btnRight.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % cats.length;
+            updateCatPreview();
+        });
+
+        // Actualizar vista previa del gato
+        function updateCatPreview() {
+            cat.src = cats[currentIndex];
+            // Reiniciar animación
+            cat.style.animation = 'none';
+            setTimeout(() => {
+                cat.style.animation = 'float 3s ease-in-out infinite';
+            }, 10);
+        }
+
+        // Iniciar juego
+        btnPlay.addEventListener("click", startGame);
+
+        // Volver al menú principal
+        backButton.addEventListener("click", () => {
+            // Detener el juego
+            clearInterval(gameInterval);
+            // Ocultar pantalla de juego y mostrar inicio
+            gameScreen.style.display = "none";
+            startScreen.style.display = "block";
+        });
+
+        // Iniciar el juego
+        function startGame() {
+            selectedCat = cats[currentIndex];
+            playerImg.src = selectedCat;
+
+            // Ocultar pantalla inicial y mostrar juego
+            startScreen.style.display = "none";
+            gameScreen.style.display = "block";
+
+            // Reiniciar variables del juego
+            lives = 3;
+            score = 0;
+            obstacles = [];
+            playerY = canvas.height - 100;
+
+            // Cargar vidas
+            renderLives();
+
+            // Iniciar bucle del juego
+            clearInterval(gameInterval);
+            gameInterval = setInterval(updateGame, 1000 / 60); // 60 FPS
+
+            // Dibujar el juego inicialmente
+            drawGame();
+        }
+
+        // Renderizar vidas
+        function renderLives() {
+            livesContainer.innerHTML = "";
+            for (let i = 0; i < lives; i++) {
+                livesContainer.innerHTML += "❤️";
+            }
+        }
+
+        // Cargar sprite de enemigos
+        const enemySprite = new Image();
+        enemySprite.src = "images/challenge/atacks-enemies.png";
+
+        let enemyFrame = 0;
+        let frameCounter = 0;
+
+
+
+        // Actualizar lógica del juego
+        function updateGame() {
+            // Mover obstáculos
+            for (let i = 0; i < obstacles.length; i++) {
+                obstacles[i].x -= 5;
+
+                // Detectar colisiones con el jugador
+                if (
+                    obstacles[i].x < playerX + 90 &&
+                    obstacles[i].x + obstacles[i].width > playerX &&
+                    obstacles[i].y < playerY &&
+                    obstacles[i].y + obstacles[i].height > playerY - 45
+                ) {
+                    lives--;
+                    renderLives();
+                    obstacles.splice(i, 1);
+
+                    if (lives <= 0) {
+                        endGame();
+                        return;
+                    }
+                }
+
+                // Eliminar obstáculos que salen de la pantalla
+                if (obstacles[i].x + obstacles[i].width < 0) {
+                    obstacles.splice(i, 1);
+                    score++;
+                }
+            }
+
+            // === GENERAR VIDA EXTRA (fuera del bucle de obstáculos) ===
+            if (frameCounter - lastLifeSpawn > lifeCooldown && Math.random() < 0.02) {
+                extraLives.push({
+                    x: canvas.width,
+                    y: Math.random() * (canvas.height - 100) + 50,
+                    width: 80,
+                    height: 80
+                });
+                lastLifeSpawn = frameCounter; // actualizar tiempo del último spawn
+            }
+
+            // Mover vidas
+            for (let i = 0; i < extraLives.length; i++) {
+                extraLives[i].x -= 5;
+
+                // Colisión con el jugador
+                if (
+                    extraLives[i].x < playerX + 90 &&
+                    extraLives[i].x + extraLives[i].width > playerX &&
+                    extraLives[i].y < playerY &&
+                    extraLives[i].y + extraLives[i].height > playerY - 45
+                ) {
+                    lives++;
+                    score += 5;
+                    renderLives();
+                    extraLives.splice(i, 1);
+                }
+
+                // Eliminar vidas fuera de pantalla
+                if (i < extraLives.length && extraLives[i].x + extraLives[i].width < 0) {
+                    extraLives.splice(i, 1);
+                }
+            }
+
+            // Movimiento jugador arriba/abajo
+            if (keys["ArrowUp"] && playerY > 50) {
+                playerY -= playerSpeed;
+            }
+            if (keys["ArrowDown"] && playerY < canvas.height - 50) {
+                playerY += playerSpeed;
+            }
+
+            // Añadir nuevos obstáculos aleatoriamente
+            if (Math.random() < 0.03) {
+                obstacles.push({
+                    x: canvas.width,
+                    y: Math.random() * (canvas.height - 100) + 50,
+                    width: 64,
+                    height: 64
+                });
+            }
+
+            // Animar frame del sprite enemigo
+            frameCounter++;
+            if (frameCounter % 10 === 0) {
+                enemyFrame = (enemyFrame + 1) % 4; // 4 posiciones en el sprite
+            }
+
+            // Dibujar el juego
+            drawGame();
+        }
+
+
+        // Dibujar el juego
+        function drawGame() {
+            // Limpiar el canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Fondo en movimiento horizontal
+            backgroundX -= 2;
+            if (backgroundX <= -canvas.width) {
+                backgroundX = 0;
+            }
+            ctx.drawImage(background, backgroundX, 0, canvas.width, canvas.height);
+            ctx.drawImage(background, backgroundX + canvas.width, 0, canvas.width, canvas.height);
+
+            // Dibujar jugador (gato)
+            ctx.drawImage(playerImg, playerX, playerY - 45, 60, 60);
+
+            // Dibujar obstáculos con sprite
+            for (let obstacle of obstacles) {
+                ctx.drawImage(
+                    enemySprite,
+                    enemyFrame * 128, // ancho de cada frame (ajusta según tu sprite)
+                    0,
+                    128, 128,          // tamaño de un frame en el sprite
+                    obstacle.x, obstacle.y,
+                    obstacle.width, obstacle.height
+                );
+            }
+
+            // Dibujar vidas extras
+            for (let life of extraLives) {
+                ctx.drawImage(lifeImg, life.x, life.y, life.width, life.height);
+            }
+
+
+            // Dibujar puntuación
+            ctx.fillStyle = "white";
+            ctx.font = "20px Arial";
+            ctx.fillText("Puntuación: " + score, 60, 30);
+        }
+
+
+        // Finalizar el juego
+        function endGame() {
+            clearInterval(gameInterval);
+
+            // Dibujar pantalla de fin de juego
+            ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "white";
+            ctx.font = "30px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("¡Juego Terminado!", canvas.width / 2, canvas.height / 2 - 30);
+            ctx.font = "24px Arial";
+            ctx.fillText("Puntuación: " + score, canvas.width / 2, canvas.height / 2 + 20);
+            ctx.font = "18px Arial";
+            ctx.fillText("Haz clic en 'Volver al Menú' para jugar de nuevo", canvas.width / 2, canvas.height / 2 + 60);
+        }
+
+        // Inicializar
+        updateCatPreview();
+
+        // Efecto de clic para el botón de play
+        btnPlay.addEventListener('click', function () {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'pulse 2s infinite';
+            }, 10);
+        });
+    </script>
+</body>
+
+</html>
