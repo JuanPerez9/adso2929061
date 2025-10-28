@@ -124,7 +124,7 @@
             $moves = $('<div class="hud movimientos">Movimientos: 0</div>');
             $contenedor.append($time, $moves);
 
-            $pokemons = ['huesos.png', 'mordecai.png', 'deedee.png', 'samurai.png', 'gumball.png', 'finn.png'];
+            $cartoons = ['huesos.png', 'mordecai.png', 'deedee.png', 'samurai.png', 'gumball.png', 'finn.png'];
             $cards = $();
             $flipped = $();
             $matched = 0;
@@ -146,7 +146,7 @@
                 $contenedor.find('.card').remove();
                 $cards = $();
 
-                $allCards = $.merge($.merge([], $pokemons), $pokemons);
+                $allCards = $.merge($.merge([], $cartoons), $cartoons);
                 $allCards.sort(function () { return 0.5 - Math.random(); });
 
                 $.each($allCards, function (index, img) {
