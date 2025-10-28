@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12-challengue-memory-game</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem auto;
+            background-color: transparent;
+        }
+
+        div.contenedor {
+            background-image: url("images/challenge-memory/fondo_ct.png");
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            border: 2px solid #ffffff;
+            width: 360px;
+            height: 610px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            position: relative;
+            padding: 60px 0;
+            gap: 15px;
+        }
+
+        .card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px !important;
+            height: 85px !important;
+            background: url(images/challenge-memory/card-ct.png) center/cover no-repeat;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .card.flipped {
+            transform: scale(1.1);
+        }
+
+        button.btn-restart {
+            position: relative;
+            bottom: 80px;
+            background: url(images/challenge-memory/restart_ct.png);
+            color: rgb(0, 0, 0);
+            font-size: 2rem;
+            width: 145px;
+            height: 49px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+
+        .hud {
+            font-family: sans-serif;
+            font-size: 14px;
+        }
+
+        .hud.tiempo {
+            position: absolute;
+            top: 80px;
+            left: 40px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .hud.movimientos {
+            position: absolute;
+            top: 80px;
+            right: 30px;
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="jquery">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+        </a>
+    </nav>
+
+    <main>
+        <header>
+            <h1>12-challengue-memory-game</h1>
+            <h2>Construye un juego de memoria usando jQuery.</h2>
+        </header>
+        <section>
+            <div class="contenedor"></div>
+            <button class="btn-restart"></button>
+        </section>
+        <section>
+            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="450" height="450"
+                src="https://embed.figma.com/design/Y0MVzyLhts0dNb6I9oOpoK/Sin-t%C3%ADtulo?node-id=0-1&embed-host=share"
+                allowfullscreen></iframe>
+        </section>
+    </main>
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // Variables 
+            $contenedor = $('.contenedor');
+            $btnRestart = $('.btn-restart');
+            $time = $('<div class="hud tiempo">Tiempo: 0s</div>');
+            $moves = $('<div class="hud movimientos">Movimientos: 0</div>');
+            $contenedor.append($time, $moves);
+
+            $pokemons = ['huesos.png', 'mordecai.png', 'deedee.png', 'samurai.png', 'gumball.png', 'finn.png'];
+            $cards = $();
+            $flipped = $();
+            $matched = 0;
+            $movesCount = 0;
+            $seconds = 0;
+            $timer = null;
+            $gameStarted = false;
+
+            // Iniciar 
+            $contenedor.initGame = function () {
+                if ($timer) clearInterval($timer);
+                $seconds = 0;
+                $movesCount = 0;
+                $matched = 0;
+                $flipped = $();
+                $gameStarted = false;
+                $time.text('Tiempo: 0s');
+                $moves.text('Movimientos: 0');
+                $contenedor.find('.card').remove();
+                $cards = $();
+
+                $allCards = $.merge($.merge([], $pokemons), $pokemons);
+                $allCards.sort(function () { return 0.5 - Math.random(); });
+
+                $.each($allCards, function (index, img) {
+                    $card = $('<div class="card"></div>').attr('data-img', img);
+                    $contenedor.append($card);
+                    $card.css('background-image', 'url(images/challenge-memory/' + img + ')');
+                    $cards = $cards.add($card);
+                });
+
+                setTimeout(function () {
+                    $cards.css('background-image', 'url(images/challenge-memory/card-ct.png)');
+                }, 1500);
+            };
+
+            // Iniciar Tiempo
+            $contenedor.startTimer = function () {
+                if ($gameStarted) return;
+                $gameStarted = true;
+                $timer = setInterval(function () {
+                    $seconds++;
+                    $time.text('Tiempo: ' + $seconds + 's');
+                }, 1000);
+            };
+
+            // Actualizar Movimientos
+            $contenedor.updateMoves = function () {
+                $movesCount++;
+                $moves.text('Movimientos: ' + $movesCount);
+            };
+
+            // Click en card
+            $contenedor.on('click', '.card', function () {
+                $contenedor.startTimer();
+                $card = $(this);
+                if ($card.hasClass('flipped') || $flipped.length >= 2) return;
+
+                $card.css('background-image', 'url(images/challenge-memory/' + $card.data('img') + ')').addClass('flipped');
+                $flipped = $flipped.add($card);
+
+                if ($flipped.length === 2) {
+                    $contenedor.updateMoves();
+                    $c1 = $flipped.eq(0);
+                    $c2 = $flipped.eq(1);
+
+                    if ($c1.data('img') === $c2.data('img')) {
+                        $matched++;
+                        $flipped = $();
+                        if ($matched === 6) {
+                            clearInterval($timer);
+                            if (typeof Swal !== 'undefined') {
+                                Swal.fire({
+                                    title: '¡Ganaste!',
+                                    text: 'Tiempo: ' + $seconds + 's - Movimientos: ' + $movesCount,
+                                    icon: 'success',
+                                    confirmButtonText: 'Reiniciar'
+                                }).then(function () {
+                                    $contenedor.initGame();
+                                });
+                            } else {
+                                alert('¡Ganaste!\nTiempo: ' + $seconds + 's\nMovimientos: ' + $movesCount);
+                                $contenedor.initGame();
+                            }
+                        }
+                    } else {
+                        setTimeout(function () {
+                            $c1.css('background-image', 'url(images/challenge-memory/card-ct.png)').removeClass('flipped');
+                            $c2.css('background-image', 'url(images/challenge-memory/card-ct.png)').removeClass('flipped');
+                            $flipped = $();
+                        }, 700);
+                    }
+                }
+            });
+
+            // Botón Reiniciar
+            $btnRestart.on('click', function () {
+                $contenedor.initGame();
+            });
+
+            // Inicializar al cargar
+            $contenedor.initGame();
+
+        });
+    </script>
+
+
+</body>
+
+</html>
