@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01- Basics</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        main section {
+            color: #fff;
+        }
+
+        section {
+            textarea {
+                background-color: #15316d;
+                border: none;
+                border-radius: 0.4rem;
+                outline: none;
+                padding: 0.4rem;
+                color: #fff;
+                width: 100%;
+                min-height: 32px;
+                font-size: 0.8rem;
+                resize: none;
+                field-sizing: content
+            }
+        }
+    </style>
+</head>
+
+<body class="sql">
+    <nav>
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>01- Basics </h1>
+            <h2>  </h2>
+        </header>
+        <section>
+            <h3>Show version MySQL: </h3>
+            <textarea>mysql --version</textarea>
+            <h3>Acess to MySQL Server: </h3>
+            <textarea>mysql -u root -p </textarea>
+            <h3>Show All Databases: </h3>
+            <textarea>show databases;</textarea>
+            <h3>Create Database: </h3>
+            <textarea>create database databasename;</textarea>
+            <h3>Use Database: </h3>
+            <textarea>use databasename;</textarea>
+            <h3>Connect database: </h3>
+            <textarea>connect databasename;</textarea>
+            <h3>Create table (Gyms): </h3>
+            <textarea> create table gyms(
+        id int auto_increment,
+        name varchar(32) not null,
+        create_at timestamp,
+        primary key(id));
+</textarea>
+            <h3>Create table (Trainers): </h3>
+            <textarea> create table trainers (
+        id int auto_increment ,
+        name varchar(32) not null unique,
+        level int not null,
+        gym_id int not null,
+        created_at timestamp,
+        primary key (id),
+        foreign key (gym_id) references gyms(id));</textarea>
+            <h3>Create table (Pokemons): </h3>
+            <textarea>create table pokemons(
+        id int auto_increment,
+        name varchar(32) not null unique,
+        type varchar(32) not null,
+        strenght int not null,
+        stamina int not null,
+        speed int not null,
+        accuracy int not null,
+        trainer_id int not null,
+        created_at timestamp,
+        primary key (id),
+        foreign key (trainer_id) references trainers(id)); </textarea>
+            <h3>Description table: </h3>
+            <textarea> describe gyms; </textarea>
+            <h3>Show tables: </h3>
+            <textarea>show tables; </textarea>
+            <h3>Exit mysql: </h3>
+            <textarea> exit</textarea>
+            <h3>Dump Data (Backup Database): </h3>
+            <textarea> mysqldump -u root pokeadso > C:\Users\nicol\OneDrive\Escritorio\adso2929061\15-sql\backup.sql</textarea>
+            <h3>Drop database: </h3>
+            <textarea>drop database pokeadso; </textarea>
+            <h3> Recovery database: </h3>
+            <textarea>
+ create database pokeadso;
+ exit
+ mysql -u root pokeadso < backup.sql
+            </textarea>
+        </section>
+    </main>
+</body>
+
+</html>

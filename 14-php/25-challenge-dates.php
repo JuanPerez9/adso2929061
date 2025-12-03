@@ -5,7 +5,7 @@ $description = 'Calculate the age in years.';
 include 'template/header.php';
 echo "<section>";
 
-// Calcular datos
+
 $birthdate = isset($_POST['birthdate']) ? $_POST['birthdate'] : '';
 $age = '';
 
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($birthdate)) {
     $birth = strtotime($birthdate);
     $today = time();
     
-    // Cálculo de años
+
     $age = floor(($today - $birth) / (365 * 24 * 60 * 60));
 }
 ?>
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($birthdate)) {
 </form>
 
 <?php if ($age !== ''): ?>
-    <div style="margin-top: 1rem; padding: 1rem; background: #e9ecef93; border-radius: 4px;">
+    <div style="margin-top: 1rem; padding: 1rem; background: #e9ecef93; border-radius: 20px;">
         <p style="color: black"><strong>Your Age:</strong> <?= $age ?> years old</p>
     </div>
 <?php endif; ?>
